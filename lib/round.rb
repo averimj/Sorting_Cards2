@@ -7,7 +7,6 @@ class Round
   def initialize(deck)
     @deck = deck
     @guesses = []
-    @counter = 0
   end
 
   def current_card
@@ -20,11 +19,17 @@ class Round
   end
 
   def number_correct
+      counter = 0
     @guesses.each do |guess|
       if guess.feedback == "Correct!"
-        @counter += 1
-      end 
+        counter += 1
+      end
     end
+    counter
+  end
+
+  def percent_correct
+    (number_correct.to_f / @guesses.count) * 100
   end
 
 end
